@@ -1,6 +1,7 @@
 package pl.test.jax.controller
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import pl.test.jax.dto.UserDTO
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
@@ -40,8 +41,3 @@ class UserController {
 	}
 
 }
-
-data class UserDTO(
-	val name: String,
-	val surname: String
-)
