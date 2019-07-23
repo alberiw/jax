@@ -1,6 +1,6 @@
 package pl.test.jax.provider
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import pl.test.jax.dto.DTO
 import java.io.IOException
 import java.io.InputStream
@@ -9,7 +9,6 @@ import java.lang.reflect.Type
 import javax.ws.rs.Consumes
 import javax.ws.rs.Produces
 import javax.ws.rs.WebApplicationException
-import javax.ws.rs.core.Context
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.MultivaluedMap
 import javax.ws.rs.ext.*
@@ -19,12 +18,7 @@ import javax.ws.rs.ext.*
 @Produces(MediaType.APPLICATION_JSON)
 class DTOProvider<T: DTO> : MessageBodyWriter<T>, MessageBodyReader<T> {
 
-	@Context
-	private lateinit var providers: Providers
-
-	private val resolver = providers.getContextResolver(ObjectMapper::class.java, MediaType.APPLICATION_JSON_TYPE)
-
-	private val mapper = resolver.getContext(ObjectMapper::class.java)
+	private val mapper = jacksonObjectMapper()
 
 	@Throws(IOException::class, WebApplicationException::class)
 	override fun writeTo(t: T, type: Class<*>?, genericType: Type?, annotations: Array<out Annotation>?, mediaType: MediaType?, httpHeaders: MultivaluedMap<String, Any>?, entityStream: OutputStream?) {
