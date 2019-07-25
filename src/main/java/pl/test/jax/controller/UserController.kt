@@ -5,6 +5,7 @@ import pl.test.jax.dto.UserDTO
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
+import javax.ws.rs.core.Response.*
 
 @Path("/users")
 class UserController {
@@ -20,10 +21,11 @@ class UserController {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	fun post(json: String) {
+	fun post(json: String): Response {
 		val mapper = jacksonObjectMapper()
 		val user = mapper.readValue(json, UserDTO::class.java)
 		println(user)
+		return Response.status(Status.CREATED).build()
 	}
 
 	@GET
@@ -36,8 +38,9 @@ class UserController {
 	@POST
 	@Path("/2")
 	@Consumes(MediaType.APPLICATION_JSON)
-	fun post2(user: UserDTO) {
+	fun post2(user: UserDTO): Response {
 		println(user)
+		return Response.status(Status.CREATED).build()
 	}
 
 }

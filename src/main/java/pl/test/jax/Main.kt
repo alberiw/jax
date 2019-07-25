@@ -1,18 +1,13 @@
 package pl.test.jax
 
-import javax.ws.rs.ext.ContextResolver
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.sun.jersey.api.core.PackagesResourceConfig
+import com.sun.jersey.spi.container.servlet.ServletContainer
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.servlet.ServletContextHandler
 import org.eclipse.jetty.servlet.ServletHolder
-import org.glassfish.jersey.server.ResourceConfig
-import org.glassfish.jersey.servlet.ServletContainer
 
 fun main() {
-	val config = ResourceConfig()
-		.packages("pl.test.jax")
-//		.register(ContextResolver<ObjectMapper> { ObjectMapper().registerModule(KotlinModule()) })
+	val config = PackagesResourceConfig("pl.test.jax")
 	val jerseyServlet = ServletHolder(ServletContainer(config))
 
 	val server = Server(1010)
