@@ -178,7 +178,7 @@
 		<kotlin.version>1.3.41</kotlin.version>
 		<jetty.version>9.4.19.v20190610</jetty.version>
 		<jersey.version>1.19.4</jersey.version>
-		<jackson.version>2.9.9</jackson.version>
+		<jackson.version>2.12.7.1</jackson.version>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
